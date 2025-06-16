@@ -10,7 +10,12 @@ const runner = require("./test-runner");
 
 //task
 const helmet = require("helmet");
+//task
 const mongoose = require("mongoose");
+mongoose.connect(process.env.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const app = express();
 
@@ -66,19 +71,5 @@ const listener = app.listen(process.env.PORT || 3000, function () {
     }, 3500);
   }
 });
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-mongoose.connection.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-mongoose.connection.on('error', err => {
-  console.error('MongoDB connection error:', err);
-});
-
 
 module.exports = app; //for testing

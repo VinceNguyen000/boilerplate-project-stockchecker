@@ -18,7 +18,7 @@ module.exports = function (app) {
     if (Array.isArray(stocks)) {
       stocks = stocks.map((s) => String(s).toUpperCase());
     } else {
-      stocks = [String(stocks).toUpperCase()];
+      stocks = [String(stocks).toUpperCase()]; // Ensure stocks is an array
     }
 
     try {
@@ -52,7 +52,7 @@ module.exports = function (app) {
   });
 };
 
-// ✅ Helper function to fetch and update one stock
+// Helper function to fetch and update one stock
 async function handleSingleStock(symbol, like, ip) {
   const url = `https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/${symbol}/quote`;
   const response = await fetch(url);
